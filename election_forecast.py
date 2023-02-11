@@ -1,16 +1,30 @@
 """
 
-This script makes a preliminary attempt to "reverse engineer" FiveThirtyEight's 2020 election model and forecast the results of that presidential election. It does so by aggregating data from 4,200 pre-election polls (found here: https://projects.fivethirtyeight.com/polls-page/data/president_polls_historical.csv), applying various weights, and simulating state elections.
+This script makes a preliminary attempt to "reverse engineer" FiveThirtyEight's 2020 election model and forecast the results of that presidential election. 
+It does so by aggregating data from 4,200 pre-election polls (found here: https://projects.fivethirtyeight.com/polls-page/data/president_polls_historical.csv), 
+applying various weights, and simulating state elections.
 
-FiveThirtyEight (FTE) is extremely transparent with its methodology, so my approach mostly followed the descriptions here:  https://fivethirtyeight.com/features/how-fivethirtyeights-2020-presidential-forecast-works-and-whats-different-because-of-covid-19/.
+FiveThirtyEight (FTE) is extremely transparent with its methodology, so my approach mostly followed the descriptions here:  
+https://fivethirtyeight.com/features/how-fivethirtyeights-2020-presidential-forecast-works-and-whats-different-because-of-covid-19/.
 
-FTE's model has three steps: 1) Collect and adjust polls, 2) Combine polls with demographic and economic data, and 3) Account for uncertainty and simulate the election thousands of times. This script performs Step 1, calculating adjusted weighted polling averages for the major candidates (Joe Biden and Donald Trump) and using them to simulate the resuts of an election.
+FTE's model has three steps: 1) Collect and adjust polls, 2) Combine polls with demographic and economic data, and 3) Account for uncertainty and simulate the election
+thousands of times. This script performs Step 1, calculating adjusted weighted polling averages for the major candidates (Joe Biden and Donald Trump) and using them
+to simulate the resuts of an election.
 
-The script processes and adjusts the polls in two general ways: selecting the best version of polls, and weighting certain polls more or less depending on a few characteristics. Sometimes, a poll will have multiple versions for different populations -- likely voters, registered voters, all voters, or all adults. The most representative polls are thought to be those that survey likely voters. The worst are those surveying all adults, regardless of voter status. Details on how the script selects poll versions are included in comments in the script. The factors that affect a poll's weight are: the quality of the pollster, as graded by FTE; the number of polls the pollster has conducted; the sample size; and how recently it occurred.
+The script processes and adjusts the polls in two general ways: selecting the best version of polls, and weighting certain polls more or less depending on a few
+characteristics. Sometimes, a poll will have multiple versions for different populations -- likely voters, registered voters, all voters, or all adults. The most
+representative polls are thought to be those that survey likely voters. The worst are those surveying all adults, regardless of voter status. Details on how the
+script selects poll versions are included in comments in the script. The factors that affect a poll's weight are: the quality of the pollster, as graded by FTE;
+the number of polls the pollster has conducted; the sample size; and how recently it occurred.
 
-Despite omitting Steps 2 and 3 of FTE's model, this approach produces fairly accurate results. In most states, each candidate's weighted polling averages are close to FTE's projections. In the simulation I demonstrate, you'll notice a few unusual results, such as Biden polling at 28.96% in his home state of Delaware (this is due to 'other' candidates being over-represented in Delaware state polls) and large polling errors leading to Biden pulling off an upset in Montana and Trump upsetting in Washington. In reality, such large errors in solidly red or blue states would be extremely unlikely, and if they did occur they would likely signal a major systematic error in the polls, since state polling errors tend to be correlated. This approach does not take such correlations into account.
+Despite omitting Steps 2 and 3 of FTE's model, this approach produces fairly accurate results. In most states, each candidate's weighted polling averages are close
+to FTE's projections. In the simulation I demonstrate, you'll notice a few unusual results, such as Biden polling at 28.96% in his home state of Delaware (this is due
+to 'other' candidates being over-represented in Delaware state polls) and large polling errors leading to Biden pulling off an upset in Montana and Trump upsetting in
+Washington. In reality, such large errors in solidly red or blue states would be extremely unlikely, and if they did occur they would likely signal a major systematic
+error in the polls, since state polling errors tend to be correlated. This approach does not take such correlations into account.
 
-Please allow about 15 seconds for this script to run. The output is the results of simulated elections in all 50 states plus Washington, D.C. The winner of the election is printed at the very end.
+Please allow about 15 seconds for this script to run. The output is the results of simulated elections in all 50 states plus Washington, D.C. 
+The winner of the election is printed at the very end.
 
 Thanks for reading!
 
