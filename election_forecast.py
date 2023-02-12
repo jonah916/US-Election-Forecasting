@@ -207,7 +207,8 @@ def _part1_getPollingAverage(state, polls, pollster_info, forecast_date):
                                                                                           
     return standardized_forecast
 
-
+# ----- Simulate election -----
+  
 # Simulate the election results in each state, add up the electoral college votes, and determine a winner
 def simulateSingleElection(polls, pollster_info, forecast_date, electoralVotes, marginOfError, verbose=False):
     Biden_win_count = 0
